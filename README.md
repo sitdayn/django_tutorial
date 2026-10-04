@@ -1,0 +1,2 @@
+# gjango_tutorial
+okay
