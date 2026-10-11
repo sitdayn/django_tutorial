@@ -1,6 +1,8 @@
-from django.urls import path
-from . import views
+from django.shortcuts import render
+from django.http import HttpResponse
 
-urlpatterns = [
-    path('', views.index, name="index"),
-]
+def index(request):
+    return render(request, "index.html")
+
+def vsem_privet(request):
+    return HttpResponse("всем привет")    
