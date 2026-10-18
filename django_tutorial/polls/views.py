@@ -5,4 +5,4 @@ def index(request):
     return render(request, "index.html")
 
 def vsem_privet(request):
-    return HttpResponse("всем привет")    
+    return HttpResponse("всем привет")
