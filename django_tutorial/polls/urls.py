@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('vsem_privet', views.vsem_privet, name="vsem_privet"),
+    path('<int:question_id>/', views.detail, name='detail'),
 ]
