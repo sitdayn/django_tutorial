@@ -7,11 +7,19 @@
         {% if error_message %}
             <div class="alert alert-danger">{{ error_message }}</div>
         {% endif %}
-        <form action="{% url 'vote' %}" method="post">
+        <form action="{% url 'vote' question.id %}" method="post">
             {% csrf_token %}
             {% for choice in question.choice_set.all %}
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="choice"
                         id="choice{{ choice.id }}" value="{{ choice.id }}">
                     <label class="form-check-label" for="choice{{ choice.id }}">
-                        {{ choice}}       
+                        {{ choice.choice_text }}
+                    </label>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success mt-2">проголосовать</button>
+        </form>
+    </div>
+</div>
+{% endblock %}        
