@@ -105,6 +105,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LANGUAGE_CODE = "ru"
+
+TIME_ZONE = "Asia/Yekaterinburg"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

@@ -3,10 +3,16 @@ from django.db.models import F, Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.utils import timezone
 
 from .models import Choice, Question
 
+def published():
+    """вопросыб у которых дата публикации уже наступила."""
+    return Question.objects.filter(pub_date__lte=timezone.now())
+
 def index(request):
+    latest_question_list = published().annotate
     latest_question_list = Question.objects.annotate(
         total_votes=Sum("choice__votes")
     ).order_by("-pub_date")[:5]
@@ -14,11 +20,11 @@ def index(request):
     return render(request, 'index.html', context)
 
 def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+    question = get_object_or_404(published(), pk=question_id)
     return render(request, 'detail.html', {'question': question})
 
 def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+    question = get_object_or_404(published(), pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
@@ -31,8 +37,8 @@ def vote(request, question_id):
     messages.success(request, "спасибо! ваш голос учтен.")
     return HttpResponseRedirect(reverse("results", args=(question.id,)))
 
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+def result(request, question_id):
+    question = get_object_or_404(published(), pk=question_id)
     choices = list(question.choice_set.all())
     total = sum(choice.votes for choice in choices)
     for choice in choices:
