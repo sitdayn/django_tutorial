@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+import os
 
 from pathlib import Path
 import os
@@ -31,7 +32,7 @@ SECRET_KEY = 'django-insecure-aevky5)fxi$g6qhm$u%#l9568^ljl4+loybqfwzr41ol&9qf91
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "ЛОГИН.pythonanywhere.com"]
 
 
 # Application definition
@@ -116,6 +117,9 @@ TIME_ZONE = "Asia/Yekaterinburg"
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE
 
 USE_I18N = True
 
