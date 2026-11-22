@@ -119,7 +119,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 USE_I18N = True
 
